@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chainbreaker</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="loading" hidden>
+        <img src="./imgs/loading.gif">
+        <p><b>CLICK TO CONTINUE</b></p>
+        <div class="opciones">
+            <img src="./imgs/btn_p.png">
+            <p><b>A</b>: useful against hand signs</p>
+        </div>
+        <div class="opciones">
+            <img src="./imgs/btn_pa.png">
+            <p><b>S</b>: useful against physical threats</p>
+        </div>
+        <div class="opciones">
+            <img src="./imgs/btn_t.png">
+            <p><b>D</b>: useful against mind games</p>
+        </div>
+
+    </div>
+
+    <main id="main" hidden>
+        <canvas id="vidasEnemigo" width="600" height="50"></canvas>
+        <div>
+            <p id="texto">Press&nbsp;<span style="font-weight: bold;">SPACE</span>&nbsp;to start</p>
+        </div>
+        <div class="pantalla">
+            <img src="./imgs/Pantalla-chainbreaker.gif" id="enemigo">
+        </div>
+        <div id="vidas"></div>
+
+        <div class="opciones">
+            <button id="b1" disabled></button>
+            <button id="b2" disabled></button>
+            <button id="b3" disabled></button>
+        </div>
+    </main>
+    <script src="js/main.js" type="module"></script>
+</body>
+
+</html>

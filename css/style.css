@@ -1,0 +1,148 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: #F2F0EF;
+    font-size: 20px;
+    letter-spacing: 1.5px;
+}
+
+div,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+main[hidden] {
+    display: none;
+}
+
+.pantalla {
+    height: 300px;
+    width: 900px;
+}
+
+#enemigo {
+    height: 100%;
+    width: 100%;
+    image-rendering: pixelated;
+}
+
+#texto {
+    color: #222222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 900px;
+}
+
+#loading {
+    color: #222222;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    width: 900px;
+}
+
+#loading img {
+    image-rendering: pixelated;
+}
+
+#loading[hidden] {
+    display: none;
+}
+
+#loading .opciones {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 30px;
+    height: 100px;
+    width: 580px;
+}
+
+#vidas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 30px;
+    height: 60px;
+    width: 900px;
+    image-rendering: pixelated;
+}
+
+#vidas img {
+    height: 60px;
+    width: 60px;
+}
+
+#vidasEnemigo {
+    height: 50px;
+    width: 600px;
+    margin-bottom: 30px;
+    border: 2px solid #222;
+}
+
+.vidaEnemigo {
+    height: 50px;
+    width: 6px;
+    background-color: #222222;
+}
+
+.opciones {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100px;
+    width: 900px;
+}
+
+button {
+    width: 90px;
+    height: 90px;
+    border-style: none;
+    image-rendering: pixelated;
+}
+
+#b1 {
+    background-image: url('../imgs/btn_p.png');
+    background-size: cover;
+}
+
+#b2 {
+    background-image: url('../imgs/btn_pa.png');
+    background-size: cover;
+}
+
+#b3 {
+    background-image: url('../imgs/btn_t.png');
+    background-size: cover;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    scale: calc(1);
+}
+
+/*
+*222222
+*/
