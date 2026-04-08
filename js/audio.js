@@ -32,7 +32,7 @@ export class AudioManager {
         if (this.#audioCtx.state === 'suspended') this.#audioCtx.resume();
     }
 
-    play(name, { loop = false, volume = 0.1, fadeIn = 0, when = null } = {}) {
+    play(name, { loop = false, volume = 0.1, fadeIn = 0, when = null, detune = 0, rate = 1 } = {}) {
         this.resumeContext();
 
         if (this.#sources[name]) {
@@ -49,6 +49,8 @@ export class AudioManager {
 
         source.buffer = buffer;
         source.loop = loop;
+        source.detune.value = detune;
+        source.playbackRate.value = rate;
 
         gain.gain.setValueAtTime(0, startAt);
         gain.gain.linearRampToValueAtTime(volume, startAt + fadeIn);

@@ -38,7 +38,7 @@ let gameEnded = false;
 
 // Space bar → begin game 
 
-window.addEventListener('keydown', (e) => {
+window.addEventListener('keydown', async (e) => {
     if (!inputUnlocked) return;
     if (e.key === ' ' && !e.repeat && !gameState) {
         gameState = true;
@@ -49,6 +49,8 @@ window.addEventListener('keydown', (e) => {
 
         player.initLives();
         player.initEnemyBar();
+        ui.setTexto(flavorText());
+        await wait(2500);
         ui.setTexto('');
         ui.setButtonsDisabled(false);
         mainGameLoop();
@@ -75,7 +77,7 @@ const mainGameLoop = async () => {
     ]);
 
     const tiempoReaccion = performance.now() - empezarTiempo;
-    if (resultado === 'click' && tiempoReaccion <= 390) {
+    if (resultado === 'click' && tiempoReaccion <= 400) {
         player.combo = true;
     }
 
@@ -214,7 +216,7 @@ const restartGame = () => {
 
     player.reset();
     ui.reset();
-    
+
     audio.stop('ending');
     audio.stop('bonus');
 
@@ -226,6 +228,19 @@ const restartGame = () => {
         audio.play('intro', { loop: true });
     }, { once: true });
 };
+const flavorText = () => {
+    const texts = [
+        `I am the breaker of chains`,
+        `At least you chose how you fall`,
+        `Your fate is but a laugh`,
+        `Whisper your prayers... I'll wait`,
+        `Entertain me`,
+    ];
+    return texts[Math.floor(Math.random() * texts.length)];
+}
+
+
+
 
 // Por hacer 
 // explorar mecanicas extra:

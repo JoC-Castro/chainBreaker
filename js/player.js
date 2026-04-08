@@ -79,6 +79,7 @@ export class Player {
     async win() {
         if (this.combo) {
             this.comboCount++;
+            const pitchShift = Math.min(this.comboCount * 60, 1200);
 
             if (this.comboCount % 5 === 0) {
                 this.audio.play('combo2', { volume: 0.18, fadeIn: 0.05 });
@@ -90,7 +91,7 @@ export class Player {
                     this.ui.renderPlayerLives(this.vidas);
                 }
             } else {
-                this.audio.play('combo', { volume: 0.11, fadeIn: 0.05 });
+                this.audio.play('combo', { volume: 0.11, fadeIn: 0.05, detune: pitchShift });
                 this.puntaje += 2;
             }
 
