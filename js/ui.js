@@ -6,6 +6,7 @@ export class UI {
         this.texto = document.getElementById('texto');
         this.enemigo = document.getElementById('enemigo');
         this.loading = document.getElementById('loading');
+        this.loadingDOM = document.getElementById('loadingDOM');
         this.main = document.getElementById('main');
         this.vidasUI = document.getElementById('vidas');
         this.vidasEnemigo = document.getElementById('vidasEnemigo');
@@ -20,6 +21,16 @@ export class UI {
     showMain() {
         this.main.hidden = false;
         this.loading.hidden = true;
+    }
+
+    reset() {
+        this.main.hidden = true;
+        this.loading.hidden = false;
+        this.loadingDOM.style.display = 'none';
+        this.setTexto('Press&nbsp;<span style="font-weight: bold;">SPACE</span>&nbsp;to start');
+        this.setEnemigoSrc('./imgs/Pantalla-chainbreaker.gif');
+        this.vidasUI.innerHTML = '';
+        this.#hpCtx.clearRect(0, 0, this.vidasEnemigo.width, this.vidasEnemigo.height);
     }
 
     // Text & images

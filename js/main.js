@@ -2,13 +2,23 @@ import { AudioManager } from "./audio.js";
 import { UI } from "./ui.js";
 import { Player } from "./player.js";
 
-// Bootstrap 
-
 const audio = new AudioManager();
 const ui = new UI();
 const player = new Player(ui, audio);
 
-audio.preload();
+window.addEventListener('load', async () => {
+    await audio.preload();
+    ui.loading.hidden = false;
+    ui.loadingDOM.style.display = 'none';
+
+    // Loading screen → click to start
+    window.addEventListener('click', () => {
+        inputUnlocked = true;
+        ui.showMain();
+        audio.resumeContext();
+        audio.play('intro', { loop: true });
+    }, { once: true });
+});
 
 // Game state 
 
@@ -25,16 +35,6 @@ let inputUnlocked = false;
 let gameState = false;
 let gameEnded = false;
 
-// Loading screen → click to start 
-
-ui.loading.hidden = false;
-
-window.addEventListener('click', () => {
-    inputUnlocked = true;
-    ui.showMain();
-    audio.resumeContext();
-    audio.play('intro', { loop: true });
-}, { once: true });
 
 // Space bar → begin game 
 
@@ -183,7 +183,7 @@ const gameOver = () => {
     audio.play('break');
     audio.play('ending', { fadeIn: 1 });
 
-    setTimeout(() => location.reload(), 5000);
+    setTimeout(() => restartGame(), 5000);
 };
 
 const gameWin = async () => {
@@ -201,7 +201,30 @@ const gameWin = async () => {
     audio.play('bonus');
     ui.setEnemigoSrc('./imgs/rat-dance.gif');
 
-    setTimeout(() => location.reload(), 21000);
+    setTimeout(() => restartGame(), 21000);
+};
+
+const restartGame = () => {
+    opcionJugador = null;
+    opcionEnemigo = null;
+    ultimaOpcionEnemigo = null;
+    inputUnlocked = false;
+    gameState = false;
+    gameEnded = false;
+
+    player.reset();
+    ui.reset();
+    
+    audio.stop('ending');
+    audio.stop('bonus');
+
+    // Loading screen → click to start
+    window.addEventListener('click', () => {
+        inputUnlocked = true;
+        ui.showMain();
+        audio.resumeContext();
+        audio.play('intro', { loop: true });
+    }, { once: true });
 };
 
 // Por hacer 

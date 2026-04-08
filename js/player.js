@@ -40,6 +40,13 @@ export class Player {
 
     // Initial render 
 
+    reset() {
+        this.vidas = 3;
+        this.puntaje = 0;
+        this.dificultad = 1;
+        this.resetCombo();
+    }
+
     initLives() {
         this.ui.renderPlayerLives(this.vidas);
     }
