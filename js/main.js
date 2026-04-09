@@ -66,10 +66,13 @@ const mainGameLoop = async () => {
     await player.handleDifficulty();
 
     ui.setEnemigoSrc('./imgs/idle.png');
-    await wait(Math.max(100, 600 - player.puntaje * 4));
+    // Set a random unpredictable idle time between 800ms and 2300ms
+    // await wait(Math.max(100, 600 - player.puntaje * 4));
+    const idleTime = Math.max(500, (Math.random() * (1500 / player.dificultad)));
+    await wait(idleTime);
 
     aiSeleccion(opcionAleatoria(3));
-    const tiempo = timeOut(1500);
+    const tiempo = timeOut(1800);
 
     const empezarTiempo = performance.now();
 
@@ -255,5 +258,5 @@ const flavorText = () => {
 // testeo y balanceo
 // finalizar arte, fondos, bordes, estilos
 
-// v0.1.0
+// v0.1.3
 // retail.development.hotfix

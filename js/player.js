@@ -16,7 +16,7 @@ export class Player {
     // Difficulty scaling 
 
     async handleDifficulty() {
-        if (this.puntaje >= 20 && this.dificultad === 1) {
+        if (this.puntaje >= 33 && this.dificultad === 1) {
             this.dificultad = 2;
             this.audio.play('powerUp1', { volume: 0.3 });
             this.ui.setTexto('...a bit faster');
@@ -30,7 +30,7 @@ export class Player {
                 this.ui.setTexto('');
             }
 
-        } else if (this.puntaje >= 50 && this.dificultad === 2) {
+        } else if (this.puntaje >= 66 && this.dificultad === 2) {
             this.dificultad = 3;
             this.audio.play('powerUp2', { volume: 0.3 });
             this.ui.setTexto('ENOUGH!');
@@ -80,6 +80,7 @@ export class Player {
         }
 
         this.ui.setEnemigoSrc('./imgs/hit.png');
+        if (wasLastLife) return;
         await wait(666);
     }
 
