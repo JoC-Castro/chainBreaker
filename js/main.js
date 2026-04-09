@@ -8,6 +8,7 @@ const player = new Player(ui, audio);
 
 window.addEventListener('load', async () => {
     await audio.preload();
+    await ui.preloadImages();
     ui.loading.hidden = false;
     ui.loadingDOM.style.display = 'none';
 
@@ -43,8 +44,8 @@ window.addEventListener('keydown', async (e) => {
     if (e.key === ' ' && !e.repeat && !gameState) {
         gameState = true;
 
-        audio.finishLoop('intro', () => {
-            if (!gameEnded) audio.play('main');
+        audio.finishLoop('intro', (endTime) => {
+            if (!gameEnded) audio.play('main', { loop: true, when: endTime });
         });
 
         player.initLives();
@@ -181,7 +182,7 @@ const gameOver = () => {
     ui.setEnemigoSrc('./imgs/hit.png');
     ui.setButtonsDisabled(true);
 
-    audio.stop('main');
+    audio.fadeOut('main', 0.5);
     audio.play('break');
     audio.play('ending', { fadeIn: 1 });
 
@@ -194,13 +195,14 @@ const gameWin = async () => {
     ui.setEnemigoSrc('./imgs/win.png');
     ui.setButtonsDisabled(true);
 
-    audio.stop('main');
+    audio.fadeOut('main', 1);
     audio.play('break');
     audio.play('ending', { fadeIn: 1 });
 
     await wait(5000);
     ui.setTexto('OH SHIT! A RAT!');
-    audio.play('bonus');
+    audio.fadeOut('ending', 2);
+    audio.play('bonus', { fadeIn: 1 });
     ui.setEnemigoSrc('./imgs/rat-dance.gif');
 
     setTimeout(() => restartGame(), 21000);
@@ -217,8 +219,8 @@ const restartGame = () => {
     player.reset();
     ui.reset();
 
-    audio.stop('ending');
-    audio.stop('bonus');
+    audio.fadeOut('ending', 1.5);
+    audio.fadeOut('bonus', 1.5);
 
     // Loading screen → click to start
     window.addEventListener('click', () => {

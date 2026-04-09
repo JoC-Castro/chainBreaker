@@ -64,6 +64,18 @@ export class AudioManager {
         return source;
     }
 
+    setRateSmooth(name, rate, duration = 0.5) {
+        const audio = this.#sources[name];
+        if (!audio) return;
+
+        const now = this.#audioCtx.currentTime;
+        const param = audio.source.playbackRate;
+
+        param.cancelScheduledValues(now);
+        param.setValueAtTime(param.value, now);
+        param.linearRampToValueAtTime(rate, now + duration);
+    }
+
     fadeOut(name, fadeTime = 1) {
         const audio = this.#sources[name];
         if (!audio) return Promise.resolve();
@@ -94,20 +106,23 @@ export class AudioManager {
 
     finishLoop(name, callback) {
         const audio = this.#sources[name];
-        if (!audio) return;
+        if (!audio || !audio.source.loop) return;
 
         const { source, buffer, startTime } = audio;
         source.loop = false;
 
         const now = this.#audioCtx.currentTime;
-        const elapsed = now - startTime;
+        const elapsed = (now - startTime) * source.playbackRate.value;
         const timeIntoLoop = elapsed % buffer.duration;
-        const remaining = buffer.duration - timeIntoLoop;
+        const remaining = Math.max(0, (buffer.duration - timeIntoLoop) / source.playbackRate.value);
+        const exactEndTime = now + remaining;
 
-        source.stop(now + remaining);
+        source.stop(exactEndTime);
+        
+        callback?.(exactEndTime);
+
         source.onended = () => {
             delete this.#sources[name];
-            callback?.();
         };
     }
 }

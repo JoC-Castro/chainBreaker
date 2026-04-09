@@ -20,19 +20,26 @@ export class Player {
             this.dificultad = 2;
             this.audio.play('powerUp1', { volume: 0.3 });
             this.ui.setTexto('...a bit faster');
-            await wait(1800);
+            this.audio.setRateSmooth('main', 1.1, 2);
+            await wait(2000);
+
             if (this.comboCount > 1) {
                 this.ui.setTexto(`combo <b>&nbsp;x${this.comboCount}</b>!`);
+
             } else {
                 this.ui.setTexto('');
             }
+
         } else if (this.puntaje >= 50 && this.dificultad === 2) {
             this.dificultad = 3;
             this.audio.play('powerUp2', { volume: 0.3 });
             this.ui.setTexto('ENOUGH!');
-            await wait(1800);
+            this.audio.setRateSmooth('main', 1.2, 2);
+            await wait(2000);
+
             if (this.comboCount > 1) {
                 this.ui.setTexto(`combo <b>&nbsp;x${this.comboCount}</b>!`);
+
             } else {
                 this.ui.setTexto('');
             }
@@ -74,7 +81,7 @@ export class Player {
         this.audio.play(`hurt${num}`);
 
         this.ui.setEnemigoSrc('./imgs/hit.png');
-        await new Promise(resolve => setTimeout(resolve, 666));
+        await wait(666);
     }
 
     async win() {

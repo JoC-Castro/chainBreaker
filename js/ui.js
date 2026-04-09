@@ -85,4 +85,29 @@ export class UI {
             ctx.fillRect(i * segW + 1, 1, segW - 2, canvas.height - 2);
         }
     }
+
+    async preloadImages() {
+        const images = [
+            './imgs/aiP.png',
+            './imgs/aiP2.png',
+            './imgs/aiP3.png',
+            './imgs/aiPa.png',
+            './imgs/aiPa2.png',
+            './imgs/aiPa3.png',
+            './imgs/aiT.png',
+            './imgs/aiT2.png',
+            './imgs/aiT3.png',
+            './imgs/hit.png',
+            './imgs/win.png',
+            './imgs/rat-dance.gif',
+            './imgs/vidas.gif',
+            './imgs/Pantalla-chainbreaker.gif',
+        ];
+
+        await Promise.all(images.map(src => {
+            const img = new Image();
+            img.src = src;
+            return img.decode();
+        }));
+    }
 }
