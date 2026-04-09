@@ -42,11 +42,12 @@ main[hidden] {
 .pantalla {
     height: 300px;
     width: 900px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #enemigo {
-    height: 100%;
-    width: 100%;
     image-rendering: pixelated;
 }
 

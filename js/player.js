@@ -1,3 +1,5 @@
+import { wait } from "./main.js";
+
 export class Player {
     vidas = 3;
     puntaje = 0;
@@ -14,23 +16,22 @@ export class Player {
     // Difficulty scaling 
 
     async handleDifficulty() {
-        if (this.puntaje >= 20 && this.dificultad < 2) {
+        if (this.puntaje >= 20 && this.dificultad === 1) {
             this.dificultad = 2;
             this.audio.play('powerUp1', { volume: 0.3 });
             this.ui.setTexto('...a bit faster');
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            if (this.combo) {
+            await wait(1800);
+            if (this.comboCount > 1) {
                 this.ui.setTexto(`combo <b>&nbsp;x${this.comboCount}</b>!`);
             } else {
                 this.ui.setTexto('');
             }
-        }
-        if (this.puntaje >= 50 && this.dificultad < 3) {
+        } else if (this.puntaje >= 50 && this.dificultad === 2) {
             this.dificultad = 3;
             this.audio.play('powerUp2', { volume: 0.3 });
             this.ui.setTexto('ENOUGH!');
-            await new Promise(resolve => setTimeout(resolve, 1800));
-            if (this.combo) {
+            await wait(1800);
+            if (this.comboCount > 1) {
                 this.ui.setTexto(`combo <b>&nbsp;x${this.comboCount}</b>!`);
             } else {
                 this.ui.setTexto('');
@@ -105,7 +106,7 @@ export class Player {
             this.resetCombo();
         }
         this.ui.renderEnemyHPBar(Math.max(0, this.ganador - this.puntaje), this.ganador);
-        await new Promise(resolve => setTimeout(resolve, 1));
+        await wait(100);
     }
 
     resetCombo() {

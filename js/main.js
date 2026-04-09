@@ -145,7 +145,7 @@ const timeOut = (base) => {
     return Math.max(0, result);
 };
 
-const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+export const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 // AI move selection 
 
