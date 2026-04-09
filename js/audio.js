@@ -25,7 +25,7 @@ export class AudioManager {
             this.#buffers[name] = await this.#audioCtx.decodeAudioData(arr);
         }
 
-        console.log('Audio cargado');
+        console.log('Audio loaded');
     }
 
     resumeContext() {
@@ -118,7 +118,7 @@ export class AudioManager {
         const exactEndTime = now + remaining;
 
         source.stop(exactEndTime);
-        
+
         callback?.(exactEndTime);
 
         source.onended = () => {

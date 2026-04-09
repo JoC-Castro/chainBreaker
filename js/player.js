@@ -74,11 +74,10 @@ export class Player {
         this.vidas--;
         this.ui.removeLastLife();
 
-        if (wasLastLife) return;
-
-        // hurt sound
-        const num = Math.floor(Math.random() * 2) + 1;
-        this.audio.play(`hurt${num}`);
+        if (!wasLastLife) {
+            const num = Math.floor(Math.random() * 2) + 1;
+            this.audio.play(`hurt${num}`);
+        }
 
         this.ui.setEnemigoSrc('./imgs/hit.png');
         await wait(666);

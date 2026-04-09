@@ -1,6 +1,7 @@
 import { AudioManager } from "./audio.js";
 import { UI } from "./ui.js";
 import { Player } from "./player.js";
+//---------------------------------------------------
 
 const audio = new AudioManager();
 const ui = new UI();
@@ -246,9 +247,13 @@ const flavorText = () => {
 
 // Por hacer 
 // explorar mecanicas extra:
-//   - ventana de doble daño al inicio (reaccion rapida => daño doble)
-//   - COMBOS (5, 10, 15 rondas seguidas => daño extra)
-// pantalla de victoria / derrota
+// -show biggest combo
+// -clutch mechanic (1 hp left)
+// -replayability???
+// mejorar pantalla de victoria / derrota
 // animacion o imagen: perder e idle/neutral
 // testeo y balanceo
 // finalizar arte, fondos, bordes, estilos
+
+// v0.1.0
+// retail.development.hotfix

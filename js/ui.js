@@ -109,5 +109,6 @@ export class UI {
             img.src = src;
             return img.decode();
         }));
+        console.log('Images loaded');
     }
 }
