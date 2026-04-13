@@ -3,7 +3,7 @@ import { wait } from "./main.js";
 export class Player {
     vidas = 3;
     puntaje = 0;
-    ganador = 100;
+    ganador = 130;
     dificultad = 1;
     combo = false;
     comboCount = 0;
@@ -16,33 +16,31 @@ export class Player {
     // Difficulty scaling 
 
     async handleDifficulty() {
-        if (this.puntaje >= 33 && this.dificultad === 1) {
-            this.dificultad = 2;
-            this.audio.play('powerUp1', { volume: 0.3 });
-            this.ui.setTexto('...a bit faster');
-            this.audio.setRateSmooth('main', 1.1, 2);
-            await wait(2000);
-
-            if (this.comboCount > 1) {
-                this.ui.setTexto(`combo <b>&nbsp;x${this.comboCount}</b>!`);
-
-            } else {
-                this.ui.setTexto('');
-            }
-
-        } else if (this.puntaje >= 66 && this.dificultad === 2) {
-            this.dificultad = 3;
-            this.audio.play('powerUp2', { volume: 0.3 });
-            this.ui.setTexto('ENOUGH!');
-            this.audio.setRateSmooth('main', 1.2, 2);
-            await wait(2000);
-
-            if (this.comboCount > 1) {
-                this.ui.setTexto(`combo <b>&nbsp;x${this.comboCount}</b>!`);
-
-            } else {
-                this.ui.setTexto('');
-            }
+        // TUTORIAL
+        // 1
+        if (this.puntaje >= 10 && this.dificultad === 1) {
+            await this.difficultyHandler(2, 'let\'s change things up', 1.01);
+            return;
+        }
+        // 2
+        if (this.puntaje >= 20 && this.dificultad === 2) {
+            await this.difficultyHandler(3, 'new tricks?', 1.02);
+            return;
+        }
+        // 3
+        if (this.puntaje >= 30 && this.dificultad === 3) {
+            await this.difficultyHandler(4, 'enough games', 1.05);
+            return;
+        }
+        // stage 1
+        if (this.puntaje >= 66 && this.dificultad === 4) {
+            await this.difficultyHandler(5, '...a bit faster', 1.1);
+            return;
+        }
+        // stage 2
+        if (this.puntaje >= 99 && this.dificultad === 5) {
+            await this.difficultyHandler(6, 'ENOUGH!', 1.15);
+            return;
         }
     }
 
@@ -120,5 +118,26 @@ export class Player {
         this.combo = false;
         this.comboCount = 0;
         this.ui.setTexto('');
+    }
+
+    comboHandler() {
+        if (this.comboCount > 1) {
+            this.ui.setTexto(`combo <b>&nbsp;x${this.comboCount}</b>!`);
+
+        } else {
+            this.ui.setTexto('');
+        }
+    }
+
+    async difficultyHandler(dificultad, texto, rate) {
+        this.dificultad = dificultad
+
+        const pitchShift = Math.min(this.dificultad * 60, 1200);
+        this.audio.play('powerUp1', { volume: 0.3, detune: pitchShift });
+        this.ui.setTexto(texto);
+        this.audio.setRateSmooth('main', rate, 2);
+
+        await wait(2000);
+        this.comboHandler();
     }
 }

@@ -36,6 +36,9 @@ let ultimaOpcionEnemigo = null;
 let inputUnlocked = false;
 let gameState = false;
 let gameEnded = false;
+let primeraOpcion = Math.floor(Math.random() * 3);
+let segundaOpcion = (primeraOpcion + 1) % 3;
+let terceraOpcion = (segundaOpcion + 1) % 3;
 
 
 // Space bar → begin game 
@@ -66,13 +69,15 @@ const mainGameLoop = async () => {
     await player.handleDifficulty();
 
     ui.setEnemigoSrc('./imgs/idle.png');
-    // Set a random unpredictable idle time between 800ms and 2300ms
-    // await wait(Math.max(100, 600 - player.puntaje * 4));
-    const idleTime = Math.max(500, (Math.random() * (1500 / player.dificultad)));
-    await wait(idleTime);
+    if (player.dificultad > 4) {
+        await wait(Math.max(400 - (player.dificultad * 100 / 6), (Math.random() * 1000)));
+    } else {
+        await wait(Math.max(400, (Math.random() * 1000)));
+    }
 
     aiSeleccion(opcionAleatoria(3));
-    const tiempo = timeOut(1800);
+    const tiempo = timeOut(1540);
+    console.log(tiempo);
 
     const empezarTiempo = performance.now();
 
@@ -82,7 +87,7 @@ const mainGameLoop = async () => {
     ]);
 
     const tiempoReaccion = performance.now() - empezarTiempo;
-    if (resultado === 'click' && tiempoReaccion <= 400) {
+    if (resultado === 'click' && tiempoReaccion <= 450) {
         player.combo = true;
     }
 
@@ -146,7 +151,8 @@ const resolverTiempo = (ms, signal) => {
 
 const timeOut = (base) => {
     // BACKUP: const result = base - player.puntaje * 15;
-    const result = base - player.puntaje * 10;
+    if (player.puntaje < 30) return base;
+    const result = base - (player.puntaje - 30) * 10;
     return Math.max(0, result);
 };
 
@@ -162,6 +168,18 @@ const AI_IMAGES = {
 
 const MOVES = ['piedra', 'papel', 'tijera'];
 
+const getVariantePool = (dificultad) => {
+
+    // Tutorial phase
+    if (dificultad === 1) return [0];
+    if (dificultad === 2) return [1];
+    if (dificultad === 3) return [2];
+    // Main game
+    if (dificultad === 4) return [primeraOpcion, segundaOpcion];
+    if (dificultad === 5) return [segundaOpcion, terceraOpcion];
+    return [0, 1, 2];
+};
+
 const aiSeleccion = (num) => {
     // Avoid repeating the same move twice in a row
     if (num === ultimaOpcionEnemigo && ultimaOpcionEnemigo !== null) {
@@ -169,9 +187,10 @@ const aiSeleccion = (num) => {
     }
 
     const move = MOVES[num - 1];
-    const variant = opcionAleatoria(player.dificultad) - 1;
+    const pool = getVariantePool(player.dificultad);
+    const variante = pool[Math.floor(Math.random() * pool.length)];
 
-    ui.setEnemigoSrc(AI_IMAGES[move][variant]);
+    ui.setEnemigoSrc(AI_IMAGES[move][variante]);
     opcionEnemigo = move;
     ultimaOpcionEnemigo = num;
 };
@@ -182,8 +201,8 @@ const opcionAleatoria = (max) => Math.floor(Math.random() * max) + 1;
 
 const gameOver = () => {
     gameEnded = true;
-    ui.setTexto('You lose, the game will restart in 5 seconds');
-    ui.setEnemigoSrc('./imgs/hit.png');
+    ui.setTexto('you lose, the game will restart in 5 seconds');
+    ui.setEnemigoSrc('./imgs/lose.png');
     ui.setButtonsDisabled(true);
 
     audio.fadeOut('main', 0.5);
@@ -195,7 +214,7 @@ const gameOver = () => {
 
 const gameWin = async () => {
     gameEnded = true;
-    ui.setTexto('You win, the game will restart in 5 seconds');
+    ui.setTexto('you win, the game will restart in 5 seconds');
     ui.setEnemigoSrc('./imgs/win.png');
     ui.setButtonsDisabled(true);
 
@@ -204,12 +223,14 @@ const gameWin = async () => {
     audio.play('ending', { fadeIn: 1 });
 
     await wait(5000);
-    ui.setTexto('OH SHIT! A RAT!');
-    audio.fadeOut('ending', 2);
+    ui.setTexto('wait...');
+    ui.setEnemigoSrc('');
     audio.play('bonus', { fadeIn: 1 });
+    await wait(6500);
+    ui.setTexto('OH SHIT! A RAT!');
     ui.setEnemigoSrc('./imgs/rat-dance.gif');
 
-    setTimeout(() => restartGame(), 21000);
+    setTimeout(() => restartGame(), 15000);
 };
 
 const restartGame = () => {
@@ -219,6 +240,9 @@ const restartGame = () => {
     inputUnlocked = false;
     gameState = false;
     gameEnded = false;
+    primeraOpcion = Math.floor(Math.random() * 3);
+    segundaOpcion = (primeraOpcion + 1) % 3;
+    terceraOpcion = (segundaOpcion + 1) % 3;
 
     player.reset();
     ui.reset();
@@ -236,11 +260,11 @@ const restartGame = () => {
 };
 const flavorText = () => {
     const texts = [
-        `I am the breaker of chains`,
-        `At least you chose how you fall`,
-        `Your fate is but a laugh`,
-        `Whisper your prayers... I'll wait`,
-        `Entertain me`,
+        `i am the breaker of chains`,
+        `at least you chose how you fall`,
+        `your fate is but a laugh`,
+        `whisper your prayers`,
+        `entertain me`,
     ];
     return texts[Math.floor(Math.random() * texts.length)];
 }
@@ -248,15 +272,16 @@ const flavorText = () => {
 
 
 
-// Por hacer 
-// explorar mecanicas extra:
+// To do
+// teach the player the moves before it actually gets hard
+// explore extra mechanics:
 // -show biggest combo
 // -clutch mechanic (1 hp left)
 // -replayability???
-// mejorar pantalla de victoria / derrota
-// animacion o imagen: perder e idle/neutral
-// testeo y balanceo
-// finalizar arte, fondos, bordes, estilos
+// improve win/loss screen
+// animation or image: lose and idle/neutral
+// testing and balancing
+// finalize art, backgrounds, borders, styles
 
-// v0.1.3
+// v0.2.6
 // retail.development.hotfix

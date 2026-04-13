@@ -41,10 +41,11 @@ main[hidden] {
 
 .pantalla {
     height: 300px;
-    width: 900px;
+    width: 800px;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-x: hidden;
 }
 
 #enemigo {
