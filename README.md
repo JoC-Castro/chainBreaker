@@ -8,7 +8,7 @@ El proyecto incluye también la integración de un sistema de audio, implementad
 
 Un ejercicio centrado en aprendizaje práctico, experimentación y consolidación de fundamentos del desarrollo en JavaScript.
 
-
+<br>
 
 ### Créditos de Audio
 
@@ -19,3 +19,27 @@ SFX de impacto: u_b32baquv5u, Driken5482
 SFX de potenciación enemiga: Eric Matyas
 
 SFX de daño: Driken5482
+
+---
+
+## English Version
+
+JavaScript project focused on exploring modules, objects, classes, and early concepts of object-oriented programming (OOP).
+
+Throughout development, the main goal was to deepen understanding of the language and explore different ways of structuring and managing data, including the use of asynchronous functions and DOM event handling.
+
+The project also includes an audio system integration, implemented using an adapted external solution from a public repository, used as reference and inspiration for this functionality.
+
+A practice-focused exercise centered on learning, experimentation, and strengthening core JavaScript development fundamentals.
+
+<br>
+
+### Audio Credits
+
+Final bonus theme: QuentinGaming
+
+Hit SFX: u_b32baquv5u, Driken5482
+
+Enemy power up SFX: Eric Matyas
+
+Hurt SFX: Driken5482
