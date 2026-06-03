@@ -8,9 +8,14 @@ El proyecto incluye también la integración de un sistema de audio, implementad
 
 Un ejercicio centrado en aprendizaje práctico, experimentación y consolidación de fundamentos del desarrollo en JavaScript.
 
-## Créditos de Audio
+
+
+### Créditos de Audio
 
 Tema de bonificación de final: QuentinGaming
+
 SFX de impacto: u_b32baquv5u, Driken5482
+
 SFX de potenciación enemiga: Eric Matyas
+
 SFX de daño: Driken5482
