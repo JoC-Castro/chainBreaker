@@ -24,7 +24,7 @@ SFX de daño: Driken5482
 
 ## English Version
 
-JavaScript project focused on exploring modules, objects, classes, and early concepts of object-oriented programming (OOP).
+JavaScript project focused on exploring modules, objects, classes, and early concepts of object oriented programming (OOP).
 
 Throughout development, the main goal was to deepen understanding of the language and explore different ways of structuring and managing data, including the use of asynchronous functions and DOM event handling.
 
