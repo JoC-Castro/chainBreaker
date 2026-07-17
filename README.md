@@ -1,5 +1,7 @@
-- [English Version](#english)
-- [Version Español](#español)
+<p align="center">
+  <a href="#english">English</a> -
+  <a href="#español">Español</a>
+</p>
 
 ---
 
@@ -19,6 +21,8 @@ A lo largo del desarrollo, el objetivo principal fue profundizar en el lenguaje 
 El proyecto incluye también la integración de un sistema de audio, implementado a partir de una solución externa adaptada de un repositorio público, utilizada como referencia e inspiración para dicha funcionalidad.
 
 Un ejercicio centrado en aprendizaje práctico, experimentación y consolidación de fundamentos del desarrollo en JavaScript.
+
+**Prueba el juego:** [ChainBreaker Demo](https://joc-castro.github.io/chainBreaker/)
 
 ---
 
@@ -54,6 +58,8 @@ Throughout development, the main goal was to deepen understanding of the languag
 The project also includes an audio system integration, implemented using an adapted external solution from a public repository, used as reference and inspiration for this functionality.
 
 A practice-focused exercise centered on learning, experimentation, and strengthening core JavaScript development fundamentals.
+
+**Try it out:** [ChainBreaker Demo](https://joc-castro.github.io/chainBreaker/)
 
 ---
 
