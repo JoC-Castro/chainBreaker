@@ -22,7 +22,7 @@ El proyecto incluye también la integración de un sistema de audio, implementad
 
 Un ejercicio centrado en aprendizaje práctico, experimentación y consolidación de fundamentos del desarrollo en JavaScript.
 
-**Prueba el juego:** [ChainBreaker Demo](https://joc-castro.github.io/chainBreaker/)
+**Prueba el juego:** [ChainBreaker](https://joc-castro.github.io/chainBreaker/) (CTRL + click)
 
 ---
 
@@ -59,7 +59,7 @@ The project also includes an audio system integration, implemented using an adap
 
 A practice-focused exercise centered on learning, experimentation, and strengthening core JavaScript development fundamentals.
 
-**Try it out:** [ChainBreaker Demo](https://joc-castro.github.io/chainBreaker/)
+**Try it out:** [ChainBreaker](https://joc-castro.github.io/chainBreaker/) (CTRL + click)
 
 ---
 
