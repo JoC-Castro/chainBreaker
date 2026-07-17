@@ -1,4 +1,16 @@
+- [English Version](#english)
+- [Version Español](#español)
+
+---
+
 # CHAINBREAKER
+## Español
+  
+<p align="center">
+<img width="800"alt="Screenshot 2026-07-17 112905" src="https://github.com/user-attachments/assets/91d3d586-4801-487e-b533-8683a157ca7d" />
+</p>
+
+---
 
 Proyecto en JavaScript enfocado en la exploración de módulos, objetos, clases y primeros pasos en programación orientada a objetos (OOP).
 
@@ -7,6 +19,10 @@ A lo largo del desarrollo, el objetivo principal fue profundizar en el lenguaje 
 El proyecto incluye también la integración de un sistema de audio, implementado a partir de una solución externa adaptada de un repositorio público, utilizada como referencia e inspiración para dicha funcionalidad.
 
 Un ejercicio centrado en aprendizaje práctico, experimentación y consolidación de fundamentos del desarrollo en JavaScript.
+
+---
+
+<img width="298" height="144" alt="Screenshot 2026-07-17 113558" src="https://github.com/user-attachments/assets/0fcb0f6c-01e5-450d-a17c-46fb9a6b6a7b" />
 
 <br>
 
@@ -22,7 +38,14 @@ SFX de daño: Driken5482
 
 ---
 
-## English Version
+# CHAINBREAKER
+## English
+
+<p align="center">
+<img width="800"alt="Screenshot 2026-07-17 112905" src="https://github.com/user-attachments/assets/91d3d586-4801-487e-b533-8683a157ca7d" />
+</p>
+
+---
 
 JavaScript project focused on exploring modules, objects, classes, and early concepts of object oriented programming (OOP).
 
@@ -31,6 +54,10 @@ Throughout development, the main goal was to deepen understanding of the languag
 The project also includes an audio system integration, implemented using an adapted external solution from a public repository, used as reference and inspiration for this functionality.
 
 A practice-focused exercise centered on learning, experimentation, and strengthening core JavaScript development fundamentals.
+
+---
+
+<img width="298" height="144" alt="Screenshot 2026-07-17 113558" src="https://github.com/user-attachments/assets/0fcb0f6c-01e5-450d-a17c-46fb9a6b6a7b" />
 
 <br>
 
